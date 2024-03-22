@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -11,29 +12,56 @@ public class User {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-
     private Long id;
 
     @Column
     private String username;
 
-
     @Column
     private String password;
-
-
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference("user-whishlist")
     private Whishlist wishlist;
 
+    @OneToMany(mappedBy = "user",  cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
+    @JsonManagedReference("cartitem-user")
+    private List<CartItem> cartItems;
+
     @OneToMany(mappedBy = "user",cascade = {CascadeType.ALL},orphanRemoval = true)
     @JsonManagedReference("order-user")
     private List<Order> orders;
 
+    @ManyToMany(mappedBy ="users")
+    private Set<Role> roles;
+
     public User()
 
     {}
+
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 
     public Long getId() {
         return id;
