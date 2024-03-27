@@ -31,7 +31,7 @@ public class CategoryController {
         return ResponseEntity.status(HttpStatus.CREATED).body(newCategory);
     }
 
-    @GetMapping("/")
+    @GetMapping("/view")
     public ResponseEntity<List<Category>> findAll() {
         List<Category> productCategories = categoryService.findAll();
         return ResponseEntity.ok(productCategories);

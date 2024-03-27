@@ -20,6 +20,7 @@ public class CategoryService {
 
     @Autowired
     public CategoryService(CategoryRepository categoryRepository) {
+
         this.categoryRepository = categoryRepository;
     }
     //Cream o categorie
@@ -27,6 +28,7 @@ public class CategoryService {
     //categoria "cloth" cu descrierea "man"
     //categoria "devices" cu descrierea "electrical"
     public Category addCategory(Category category) {
+
         return categoryRepository.save(category);
     }
     //Vedem lista cu toate categoriile de produse
@@ -43,8 +45,6 @@ public class CategoryService {
     }
 
 
-    //Editam o categorie
-    //la cetagoria
 
 
 

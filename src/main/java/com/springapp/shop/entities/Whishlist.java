@@ -5,24 +5,25 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
+
 @Entity
 public class Whishlist {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
 
 
-    @OneToMany(mappedBy="wishlist", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToMany(mappedBy = "wishlist", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JsonManagedReference("whishlistitem-wishlist")
     private List<WishlistItem> wishlistItems;
 
 
     @OneToOne
-            @JsonBackReference("user-whishlist")
+    @JsonBackReference("user-whishlist")
     @JoinColumn(name = "user_id")
-    private User  user;
+    private User user;
 
     public Whishlist() {
     }

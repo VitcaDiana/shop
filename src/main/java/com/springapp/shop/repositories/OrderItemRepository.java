@@ -1,13 +1,9 @@
 package com.springapp.shop.repositories;
 
-
-import com.springapp.shop.entities.WishlistItem;
+import com.springapp.shop.entities.OrderItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface WIshlistItemRepository extends JpaRepository<WishlistItem, Long> {
-
+public interface OrderItemRepository extends JpaRepository<OrderItem,Long> {
 }

@@ -1,11 +1,8 @@
 package com.springapp.shop.services;
 
 
-import com.springapp.shop.dtos.WishlistRequestDTO;
-import com.springapp.shop.entities.Product;
-import com.springapp.shop.entities.User;
-import com.springapp.shop.entities.Whishlist;
-import com.springapp.shop.entities.WishlistItem;
+import com.springapp.shop.dtos.*;
+import com.springapp.shop.entities.*;
 import com.springapp.shop.exceptions.ResourceNotFoundException;
 import com.springapp.shop.repositories.ProductRepository;
 import com.springapp.shop.repositories.UserRepository;
@@ -14,6 +11,11 @@ import com.springapp.shop.repositories.WishlistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class WishListService {
@@ -45,4 +47,15 @@ public class WishListService {
         return wishlistRepository.save(whishlist);
 
     }
+    public List<WishlistItem> getUserWishlistItems(Long userId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (userOptional.isPresent()) {
+            Whishlist wishlist = userOptional.get().getWishlist();
+            if (wishlist != null) {
+                return wishlist.getWishlistItems();
+            }
+        }
+        return Collections.emptyList();
+    }
+
 }
