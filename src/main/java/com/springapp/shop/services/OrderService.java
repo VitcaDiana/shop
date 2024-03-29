@@ -11,6 +11,7 @@ import com.springapp.shop.repositories.CartItemRepository;
 import com.springapp.shop.repositories.OrderRepository;
 import com.springapp.shop.repositories.UserRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,12 @@ public class OrderService {
     private OrderRepository orderRepository;
     private UserRepository userRepository;
     private CartItemRepository cartItemRepository;
+@Autowired
+    public OrderService(OrderRepository orderRepository, UserRepository userRepository, CartItemRepository cartItemRepository) {
+        this.orderRepository = orderRepository;
+        this.userRepository = userRepository;
+        this.cartItemRepository = cartItemRepository;
+    }
 
     public OrderItemResponseDTO mapFromCartitemDTOToOrderitemDTO(CartItemResponseDTO cartItem) {
         OrderItemResponseDTO orderItemDTO = new OrderItemResponseDTO();

@@ -30,7 +30,7 @@ public class ProductController {
     public ResponseEntity<Product> findProductById(@PathVariable Long id){
         return ResponseEntity.status(HttpStatus.CREATED).body(productService.findById(id));
     }
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<List<Product>> findAll() {
         List<Product> productList = productService.findAll();
         return ResponseEntity.ok(productList);

@@ -19,8 +19,8 @@ public class CartController {
     public CartController(CartService cartService) {
         this.cartService = cartService;
     }
-    @PostMapping
-    public ResponseEntity<CartItem> addtoWishList(@RequestBody CartRequestDTO cartRequestDTO){
+    @PostMapping("/")
+    public ResponseEntity<CartItem> addtoCart(@RequestBody CartRequestDTO cartRequestDTO){
     return ResponseEntity.status(HttpStatus.CREATED).body(cartService.addToCart(cartRequestDTO));
     }
     @GetMapping("/{userId}")

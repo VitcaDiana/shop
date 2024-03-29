@@ -42,6 +42,9 @@ public class JwtSecurityConfig {
                         auth.requestMatchers("/category/**").permitAll()
                                 .requestMatchers("/authenticate").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/product/**").hasRole("ADMIN")
+                                .requestMatchers("/wishlist/**").permitAll()
+                                .requestMatchers("/cart/**").permitAll()
+                                .requestMatchers("/order/**").permitAll()
                                 .anyRequest().authenticated())
 
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
