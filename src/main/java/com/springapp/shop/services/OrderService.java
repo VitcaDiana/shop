@@ -63,7 +63,7 @@ public class OrderService {
     //
     //Endpoint: /orders/add/{userId}
     @Transactional
-    public Order addOrderToUser() {
+    public Order addOrderToUser(Long userId) {
         //gasesc userul dupa id
         //creez o noua comanda
         //atasez comanda de utilizator

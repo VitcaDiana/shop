@@ -22,7 +22,7 @@ public class OrderController {
     //Endpoint: /orders/add/{userId}
     @PostMapping("/add/{userId}")
     public ResponseEntity<Order> addOrderByUser(@PathVariable Long userId){
-        return ResponseEntity.ok(orderService.addOrderToUser());
+        return ResponseEntity.ok(orderService.addOrderToUser(userId));
     }
 
     @GetMapping("/{userId}")
